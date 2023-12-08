@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CasoEstudio2.Models.CasasModel>
+﻿@model IEnumerable<CasoEstudio2.Entities.CasasEntidad>
 
 @{
     ViewBag.Title = "ConsultarCasas";
@@ -11,16 +11,37 @@
 </p>
 <table class="table">
     <tr>
-        <th></th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Estado</th>
+
+        <th>Usuario Alquiler</th>
+        <th>Fecha Alquiler</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
+        <td>@item.DescripcionCasa</td>
+        <td>@item.PrecioCasa</td>
+        <td>@item.Estado</td>
+
+        @if (item.UsuarioAlquiler != null)
+        {
+            <td>@item.UsuarioAlquiler</td>
+        }
+        else
+        {
+            <td>N/A</td>
+        }
+
+        @if (@item.FechaAlquiler != null)
+        {
+            <td>@item.FechaAlquiler</td>
+        }
+        else
+        {
+            <td>N/A</td>
+        }
     </tr>
 }
 

@@ -31,3 +31,57 @@ VALUES ('Casa en Heredia', 122000, NULL, NULL);
 
 INSERT INTO [dbo].[CasasSistema] ([DescripcionCasa], [PrecioCasa], [UsuarioAlquiler], [FechaAlquiler])
 VALUES ('Casa en Guanacaste', 105000, NULL, NULL);
+
+--
+CREATE PROCEDURE ObtenerInfoCasas
+AS
+BEGIN
+    SELECT
+        DescripcionCasa,
+        PrecioCasa,
+        UsuarioAlquiler,
+        CASE
+            WHEN UsuarioAlquiler IS NOT NULL AND FechaAlquiler IS NOT NULL THEN 'Reservada'
+            ELSE 'Disponible'
+        END AS Estado,
+        FechaAlquiler
+    FROM
+        CasasSistema
+    WHERE
+        PrecioCasa BETWEEN 115000 AND 180000
+    ORDER BY
+        CASE
+            WHEN UsuarioAlquiler IS NOT NULL AND FechaAlquiler IS NOT NULL THEN 1
+            ELSE 0
+        END;
+END;
+
+
+EXEC ObtenerInfoCasas;
+
+
+CREATE PROCEDURE ObtenerCasasDisponibles
+AS
+BEGIN
+    SELECT
+        DescripcionCasa,
+        PrecioCasa,
+        UsuarioAlquiler,
+        CASE
+            WHEN UsuarioAlquiler IS NOT NULL AND FechaAlquiler IS NOT NULL THEN 'Reservada'
+            ELSE 'Disponible'
+        END AS Estado,
+        FechaAlquiler
+    FROM
+        CasasSistema
+    WHERE
+        UsuarioAlquiler IS NULL AND FechaAlquiler IS NULL
+    ORDER BY
+        CASE
+            WHEN UsuarioAlquiler IS NOT NULL AND FechaAlquiler IS NOT NULL THEN 1
+            ELSE 0
+        END;
+END;
+GO
+
+EXEC ObtenerCasasDisponibles;

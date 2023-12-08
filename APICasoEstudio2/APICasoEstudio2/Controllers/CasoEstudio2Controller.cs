@@ -1,17 +1,34 @@
-﻿using System;
+﻿using APICasoEstudio2.Models;
+using APICasoEstudio2.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Net.Http;
 
 namespace APICasoEstudio2.Controllers
 {
-    public class CasoEstudio2Controller : Controller
+    public class CasoEstudio2Controller : ApiController
     {
-        // GET: CasoEstudio2
-        public ActionResult Index()
+        [HttpGet]
+        [Route("ConsultarCasas")]
+        public List<ObtenerInfoCasas_Result> ConsultarCasas()
         {
-            return View();
+            using (var contexto = new CasoEstudioKNEntities())
+            {
+                return contexto.ObtenerInfoCasas().ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("ObtenerCasasDisponibles")]
+        public List<ObtenerCasasDisponibles_Result> ObtenerCasasDisponibles()
+        {
+            using (var contexto = new CasoEstudioKNEntities())
+            {
+                return contexto.ObtenerCasasDisponibles().ToList();
+            }
         }
     }
 }
