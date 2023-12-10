@@ -30,5 +30,36 @@ namespace APICasoEstudio2.Controllers
                 return contexto.ObtenerCasasDisponibles().ToList();
             }
         }
+
+        [HttpGet]
+        [Route("ConsultarCasa")]
+        public ObtenerInfoCasa_Result ConsultarCasa(long q)
+        {
+            using (var context = new CasoEstudioKNEntities())
+            { 
+                return context.ObtenerInfoCasa(q).FirstOrDefault();
+            }
+        }
+
+        [HttpPut]
+        [Route("ActualizarAlquiler")]
+        public string ActualizarAlquiler(CasasEntidad entidad)
+        {
+            //DateTime dateTime = new DateTime();
+            //entidad.FechaAlquiler = dateTime;
+            try
+            {
+                using (var context = new CasoEstudioKNEntities())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    context.ActualizarAlquiler(entidad.IdCasa, entidad.DescripcionCasa, entidad.PrecioCasa, entidad.UsuarioAlquiler, entidad.FechaAlquiler);
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
     }
 }

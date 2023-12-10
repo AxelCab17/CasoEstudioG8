@@ -7,7 +7,7 @@ namespace CasoEstudio2.Entities
 {
     public class CasasEntidad
     {
-        public long Id_Casa { get; set; }
+        public long IdCasa { get; set; }
         public string DescripcionCasa { get; set; }
         public decimal PrecioCasa { get; set; }
         public string UsuarioAlquiler { get; set; }

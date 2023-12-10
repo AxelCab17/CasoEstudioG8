@@ -4,11 +4,17 @@
     ViewBag.Title = "ConsultarCasas";
 }
 
-<h2>ConsultarCasas</h2>
+<h2>Consultar Casas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    • Mostrar Descripción, Precio, Usuario, Estado (Disponible o Reservada) y la fecha en formato dd/MM/yyyy.<br>
+    • Mostrar los registros que tengan un precio entre 115.000 y 180.000.<br>
+    • Ordenar el resultado por estado (las casas disponibles se muestren de primero).
 </p>
+
+<button class="p-1">@Html.ActionLink("ALQUILAR CASA", "AlquilerCasas", "Casas", new { area = "" }, new { @class = "navbar-brand" })</button>
+<p></p>
+
 <table class="table">
     <tr>
         <th>Descripción</th>
@@ -19,30 +25,31 @@
         <th>Fecha Alquiler</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>@item.DescripcionCasa</td>
-        <td>@item.PrecioCasa</td>
-        <td>@item.Estado</td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.DescripcionCasa</td>
+            <td>@item.PrecioCasa</td>
+            <td>@item.Estado</td>
 
-        @if (item.UsuarioAlquiler != null)
-        {
-            <td>@item.UsuarioAlquiler</td>
-        }
-        else
-        {
-            <td>N/A</td>
-        }
+            @if (item.UsuarioAlquiler != null)
+            {
+                <td>@item.UsuarioAlquiler</td>
+            }
+            else
+            {
+                <td>N/A</td>
+            }
 
-        @if (@item.FechaAlquiler != null)
-        {
-            <td>@item.FechaAlquiler</td>
-        }
-        else
-        {
-            <td>N/A</td>
-        }
-    </tr>
-}
+            @if (@item.FechaAlquiler != null)
+            {
+                <td>@item.FechaAlquiler</td>
+            }
+            else
+            {
+                <td>N/A</td>
+            }
+        </tr>
+    }
 
 </table>

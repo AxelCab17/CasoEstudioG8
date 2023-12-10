@@ -1,17 +1,104 @@
-﻿@model CasoEstudio2.Models.CasasModel
+﻿@model IEnumerable<CasoEstudio2.Entities.CasasEntidad>
 
 @{
     ViewBag.Title = "AlquilerCasas";
 }
 
-<h2>AlquilerCasas</h2>
+<h2>Alquiler Casas</h2>
+<p>
+    • IdCasa es un DropdownList que muestra la descripción de la casa (solo debe mostrar las casas no alquiladas).<br>
+    • PrecioCasa es un textbox y su información es de solo lectura (la información se obtiene de la casa seleccionada, el precio es mensual).<br>
+    • UsuarioAlquiler es un textbox y su información la ingresa el usuario (debe validar que tenga información).
+
+</p>
+<button class="p-1">@Html.ActionLink("Volver a Consultas Casa", "ConsultarCasas", "Casas", new { area = "" }, new { @class = "navbar-brand" })</button>
+
+@using (Html.BeginForm("ActualizarAlquiler", "Casas", FormMethod.Post))
+{
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <script></script>
+                <!-- Dropdown -->
+                <label for="miDropdown" class="form-label">Casas Disponibles:</label>
+                <select id="miDropdown" class="form-select" onchange="actualizarValores()">
+                    @{
+                        int contador = 1;
+                        foreach (var item in Model)
+                        {
+                            <option value="@contador"
+                                    data-id="@item.IdCasa"
+                                    data-precio="@item.PrecioCasa"
+                                    data-usuario="@item.UsuarioAlquiler"
+                                    data-descripcion="@item.DescripcionCasa"
+                                    data-fecha="@item.FechaAlquiler?.ToString()">
+                                @item.DescripcionCasa
+                            </option>
+                            contador++;
+                        }
+                    }
+                </select>
+
+                <!-- IdCasa -->
+                <input type="hidden" id="IdCasa" name="IdCasa" readonly="readonly" class="form-control" />
+
+                <!-- DescripcionCasa -->
+                <input type="hidden" id="DescripcionCasa" name="DescripcionCasa" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <!-- PrecioCasa -->
+                <label for="PrecioCasa" class="form-label">Precio de la Casa:</label>
+                <input type="text" id="PrecioCasa" name="PrecioCasa" readonly="readonly" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <!-- UsuarioAlquiler -->
+                <label for="UsuarioAlquiler" class="form-label">Usuario de Alquiler:</label>
+                <input type="text" id="UsuarioAlquiler" name="UsuarioAlquiler" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <!-- FechaAlquiler -->
+                <input type="hidden" id="FechaAlquiler" name="FechaAlquiler" class="form-control" />
+                <script>
+                    var fechaActual = new Date();
+                    var fechaFormateada = fechaActual.toISOString().slice(0, 10);
+                    document.getElementById("FechaAlquiler").value = fechaFormateada;
+                </script>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <!-- Botón de Validar -->
+                <button type="submit" class="btn btn-primary">Validar</button>
+            </div>
+        </div>
+    </div>
+}
 
 
+<script>
+    function actualizarValores() {
+        var dropdown = document.getElementById("miDropdown");
+        var valorSeleccionado = dropdown.options[dropdown.selectedIndex].getAttribute("data-id");
+        var precioCasa = dropdown.options[dropdown.selectedIndex].getAttribute("data-precio");
+        var usuarioAlquiler = dropdown.options[dropdown.selectedIndex].getAttribute("data-usuario");
+        var descripcionCasa = dropdown.options[dropdown.selectedIndex].getAttribute("data-descripcion");
 
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        document.getElementById("IdCasa").value = valorSeleccionado;
+        document.getElementById("PrecioCasa").value = precioCasa;
+        document.getElementById("UsuarioAlquiler").value = usuarioAlquiler;
+        document.getElementById("DescripcionCasa").value = descripcionCasa;
+    }
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

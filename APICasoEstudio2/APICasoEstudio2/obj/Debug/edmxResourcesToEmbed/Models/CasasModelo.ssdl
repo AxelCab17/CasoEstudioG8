@@ -14,6 +14,8 @@
     <Parameter Name="IdCasa" Type="bigint" Mode="In" />
     <Parameter Name="DescripcionCasa" Type="varchar" Mode="In" />
     <Parameter Name="PrecioCasa" Type="decimal" Mode="In" />
+    <Parameter Name="UsuarioAlquiler" Type="varchar" Mode="In" />
+    <Parameter Name="FechaAlquiler" Type="datetime" Mode="In" />
   </Function>
   <Function Name="ObtenerCasasDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="ObtenerInfoCasas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />

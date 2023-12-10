@@ -12,13 +12,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ActualizarAlquiler" FunctionName="CasoEstudioKNModel.Store.ActualizarAlquiler" />
     <FunctionImportMapping FunctionImportName="ObtenerCasasDisponibles" FunctionName="CasoEstudioKNModel.Store.ObtenerCasasDisponibles">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CasoEstudioKNModel.ObtenerCasasDisponibles_Result">
+          <ScalarProperty Name="IdCasa" ColumnName="IdCasa" />
           <ScalarProperty Name="DescripcionCasa" ColumnName="DescripcionCasa" />
           <ScalarProperty Name="PrecioCasa" ColumnName="PrecioCasa" />
           <ScalarProperty Name="UsuarioAlquiler" ColumnName="UsuarioAlquiler" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerInfoCasa" FunctionName="CasoEstudioKNModel.Store.ObtenerInfoCasa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CasoEstudioKNModel.ObtenerInfoCasa_Result">
+          <ScalarProperty Name="IdCasa" ColumnName="IdCasa" />
+          <ScalarProperty Name="DescripcionCasa" ColumnName="DescripcionCasa" />
+          <ScalarProperty Name="PrecioCasa" ColumnName="PrecioCasa" />
+          <ScalarProperty Name="UsuarioAlquiler" ColumnName="UsuarioAlquiler" />
           <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -34,17 +47,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ObtenerInformacionCasa" FunctionName="CasoEstudioKNModel.Store.ObtenerInformacionCasa">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="CasoEstudioKNModel.ObtenerInformacionCasa_Result">
-          <ScalarProperty Name="IdCasa" ColumnName="IdCasa" />
-          <ScalarProperty Name="DescripcionCasa" ColumnName="DescripcionCasa" />
-          <ScalarProperty Name="PrecioCasa" ColumnName="PrecioCasa" />
-          <ScalarProperty Name="UsuarioAlquiler" ColumnName="UsuarioAlquiler" />
-          <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ActualizarAlquiler" FunctionName="CasoEstudioKNModel.Store.ActualizarAlquiler" />
   </EntityContainerMapping>
 </Mapping>

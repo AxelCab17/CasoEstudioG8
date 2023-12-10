@@ -12,22 +12,32 @@
   </EntityType>
   <EntityContainer Name="CasoEstudioKNEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CasasSistema" EntityType="Self.CasasSistema" />
-    <FunctionImport Name="ObtenerCasasDisponibles" ReturnType="Collection(CasoEstudioKNModel.ObtenerCasasDisponibles_Result)" />
-    <FunctionImport Name="ObtenerInfoCasas" ReturnType="Collection(CasoEstudioKNModel.ObtenerInfoCasas_Result)" />
-    <FunctionImport Name="ObtenerInformacionCasa" ReturnType="Collection(CasoEstudioKNModel.ObtenerInformacionCasa_Result)">
-      <Parameter Name="IdCasa" Mode="In" Type="Int64" />
-    </FunctionImport>
     <FunctionImport Name="ActualizarAlquiler">
       <Parameter Name="IdCasa" Mode="In" Type="Int64" />
       <Parameter Name="DescripcionCasa" Mode="In" Type="String" />
       <Parameter Name="PrecioCasa" Mode="In" Type="Decimal" />
+      <Parameter Name="UsuarioAlquiler" Mode="In" Type="String" />
+      <Parameter Name="FechaAlquiler" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerCasasDisponibles" ReturnType="Collection(CasoEstudioKNModel.ObtenerCasasDisponibles_Result)" />
+    <FunctionImport Name="ObtenerInfoCasa" ReturnType="Collection(CasoEstudioKNModel.ObtenerInfoCasa_Result)">
+      <Parameter Name="IdCasa" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerInfoCasas" ReturnType="Collection(CasoEstudioKNModel.ObtenerInfoCasas_Result)" />
   </EntityContainer>
   <ComplexType Name="ObtenerCasasDisponibles_Result">
+    <Property Type="Int64" Name="IdCasa" Nullable="false" />
     <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
     <Property Type="Decimal" Name="PrecioCasa" Nullable="false" Precision="10" Scale="2" />
     <Property Type="String" Name="UsuarioAlquiler" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="Estado" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="FechaAlquiler" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="ObtenerInfoCasa_Result">
+    <Property Type="Int64" Name="IdCasa" Nullable="false" />
+    <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
+    <Property Type="Decimal" Name="PrecioCasa" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="UsuarioAlquiler" Nullable="true" MaxLength="30" />
     <Property Type="DateTime" Name="FechaAlquiler" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="ObtenerInfoCasas_Result">
@@ -35,13 +45,6 @@
     <Property Type="Decimal" Name="PrecioCasa" Nullable="false" Precision="10" Scale="2" />
     <Property Type="String" Name="UsuarioAlquiler" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="Estado" Nullable="false" MaxLength="10" />
-    <Property Type="DateTime" Name="FechaAlquiler" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="ObtenerInformacionCasa_Result">
-    <Property Type="Int64" Name="IdCasa" Nullable="false" />
-    <Property Type="String" Name="DescripcionCasa" Nullable="false" MaxLength="30" />
-    <Property Type="Decimal" Name="PrecioCasa" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="String" Name="UsuarioAlquiler" Nullable="true" MaxLength="30" />
     <Property Type="DateTime" Name="FechaAlquiler" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

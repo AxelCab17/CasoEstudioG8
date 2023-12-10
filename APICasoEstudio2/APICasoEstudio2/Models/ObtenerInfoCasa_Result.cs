@@ -11,13 +11,12 @@ namespace APICasoEstudio2.Models
 {
     using System;
     
-    public partial class ObtenerCasasDisponibles_Result
+    public partial class ObtenerInfoCasa_Result
     {
         public long IdCasa { get; set; }
         public string DescripcionCasa { get; set; }
         public decimal PrecioCasa { get; set; }
         public string UsuarioAlquiler { get; set; }
-        public string Estado { get; set; }
         public Nullable<System.DateTime> FechaAlquiler { get; set; }
     }
 }

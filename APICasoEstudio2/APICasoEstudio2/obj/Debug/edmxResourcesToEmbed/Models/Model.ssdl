@@ -14,12 +14,14 @@
     <Parameter Name="IdCasa" Type="bigint" Mode="In" />
     <Parameter Name="DescripcionCasa" Type="varchar" Mode="In" />
     <Parameter Name="PrecioCasa" Type="decimal" Mode="In" />
+    <Parameter Name="UsuarioAlquiler" Type="varchar" Mode="In" />
+    <Parameter Name="FechaAlquiler" Type="datetime" Mode="In" />
   </Function>
   <Function Name="ObtenerCasasDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="ObtenerInfoCasas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="ObtenerInformacionCasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="ObtenerInfoCasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdCasa" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="ObtenerInfoCasas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="CasoEstudioKNModelStoreContainer">
     <EntitySet Name="CasasSistema" EntityType="Self.CasasSistema" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

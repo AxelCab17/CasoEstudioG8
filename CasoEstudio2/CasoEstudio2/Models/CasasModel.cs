@@ -22,5 +22,26 @@ namespace CasoEstudio2.Models
                 return res.Content.ReadFromJsonAsync<List<CasasEntidad>>().Result;
             }
         }
+
+        public List<CasasEntidad> ObtenerCasasDisponibles()
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ObtenerCasasDisponibles";
+                var res = client.GetAsync(urlApi).Result;
+                return res.Content.ReadFromJsonAsync<List<CasasEntidad>>().Result;
+            }
+        }
+
+        public string ActualizarAlquiler(CasasEntidad entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ActualizarAlquiler";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PutAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
     }
 }
